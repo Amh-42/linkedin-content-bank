@@ -68,14 +68,57 @@ pip install -r requirements.txt
 
 ### 7. Troubleshooting
 
-Check the error logs if you encounter issues:
-1. In cPanel, go to "Error Log"
-2. Look for any Python or application-related errors
+#### 500 Internal Server Error
+
+If you encounter a 500 Internal Server Error after deployment, try these solutions:
+
+1. **Check the error logs**:
+   - In cPanel, go to "Error Log"
+   - Also check the app_error.log in your application directory
+   
+2. **Run the diagnostic script**:
+   ```
+   cd ~/public_html  # or your application directory
+   python check_environment.py > diagnostic_report.txt
+   cat diagnostic_report.txt  # View the report
+   ```
+   
+3. **Install dependencies using the specific requirements file**:
+   ```
+   cd ~/public_html
+   source venv/bin/activate
+   pip install -r cpanel_requirements.txt
+   ```
+   
+4. **Fix permissions**:
+   ```
+   chmod 755 ~/public_html
+   chmod 755 passenger_wsgi.py
+   chmod 666 content_bank.db
+   chmod -R 755 static templates
+   ```
+   
+5. **Check Python version**:
+   - Make sure your cPanel Python app is using Python 3.8+
+   - Try switching to Python 3.9 if available
+   
+6. **Restart Python application**:
+   - In cPanel, go to "Setup Python App"
+   - Restart your application
+
+7. **Check your .htaccess file**:
+   - Make sure it's properly formatted
+   - Some hosting providers require specific syntax
+
+8. **Contact your hosting provider**:
+   - If all else fails, contact your hosting support
+   - They may have specific requirements for Python applications
 
 Common issues:
 - Permissions: Make sure directories and files have proper permissions
 - Virtual environment: Ensure requirements are installed in the correct environment
 - Database: Check if SQLite database has write permissions
+- ASGI/WSGI compatibility: FastAPI is an ASGI framework but cPanel often uses WSGI
 
 ### 8. Updating the Application
 
