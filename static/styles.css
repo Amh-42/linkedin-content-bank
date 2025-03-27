@@ -1,0 +1,143 @@
+/* Mobile-first design for LinkedIn Content Bank */
+
+/* Custom LinkedIn colors */
+:root {
+    --linkedin-blue: #0077B5;
+    --linkedin-light-blue: #0088CC;
+    --linkedin-dark-blue: #006097;
+    --light-gray: #f3f2ef;
+    --medium-gray: #e0e0e0;
+    --dark-gray: #666666;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--light-gray);
+    color: #292929;
+}
+
+/* Responsive font sizing */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+/* Card styling */
+.card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.content-card:hover {
+    transform: translateY(-3px);
+}
+
+.card-header {
+    background-color: white;
+    border-bottom: 1px solid var(--medium-gray);
+    padding: 1rem;
+}
+
+/* Button styling */
+.btn-primary {
+    background-color: var(--linkedin-blue);
+    border-color: var(--linkedin-blue);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--linkedin-dark-blue);
+    border-color: var(--linkedin-dark-blue);
+}
+
+.btn-outline-primary {
+    color: var(--linkedin-blue);
+    border-color: var(--linkedin-blue);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--linkedin-blue);
+    border-color: var(--linkedin-blue);
+}
+
+/* Navigation */
+.navbar {
+    background-color: var(--linkedin-blue);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand,
+.nav-link {
+    color: white !important;
+}
+
+.nav-link:hover {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Form controls */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--linkedin-light-blue);
+    box-shadow: 0 0 0 0.25rem rgba(0, 119, 181, 0.25);
+}
+
+/* Tables */
+.table th {
+    font-weight: 600;
+    color: var(--dark-gray);
+}
+
+/* Status badges */
+.badge.bg-warning {
+    background-color: #f5bd41 !important;
+    color: #212529;
+}
+
+.badge.bg-info {
+    background-color: #0dcaf0 !important;
+}
+
+.badge.bg-success {
+    background-color: #198754 !important;
+}
+
+.badge.bg-primary {
+    background-color: var(--linkedin-blue) !important;
+}
+
+/* Mobile optimizations */
+@media (max-width: 767.98px) {
+    .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .btn {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+}

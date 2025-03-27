@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if content %}Edit Content{% else %}New Content{% endif %} - LinkedIn Content Bank
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="h4 mb-0">{% if content %}Edit Content{% else %}New Content{% endif %}</h1>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data"
+                    action="{% if content %}/content/{{ content.id }}/edit{% else %}/content/new{% endif %}">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" required
+                            value="{{ content.title if content else '' }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="content_type" class="form-label">Content Type</label>
+                        <select class="form-select" id="content_type" name="content_type" required>
+                            <option value="">Select content type</option>
+                            <option value="Article" {% if content and content.content_type=='Article' %}selected{% endif
+                                %}>Article</option>
+                            <option value="Image Post" {% if content and content.content_type=='Image Post' %}selected{%
+                                endif %}>Image Post</option>
+                            <option value="Text Post" {% if content and content.content_type=='Text Post' %}selected{%
+                                endif %}>Text Post</option>
+                            <option value="Video" {% if content and content.content_type=='Video' %}selected{% endif %}>
+                                Video</option>
+                            <option value="Poll" {% if content and content.content_type=='Poll' %}selected{% endif %}>
+                                Poll</option>
+                            <option value="Document" {% if content and content.content_type=='Document' %}selected{%
+                                endif %}>Document</option>
+                            <option value="Carousel" {% if content and content.content_type=='Carousel' %}selected{%
+                                endif %}>Carousel</option>
+                            <option value="Newsletter" {% if content and content.content_type=='Newsletter' %}selected{%
+                                endif %}>Newsletter</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Content Description</label>
+                        <textarea class="form-control" id="description" name="description"
+                            rows="5">{{ content.description if content else '' }}</textarea>
+                        <div class="form-text">Enter the content text, ideas, or outline here.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="resource_file" class="form-label">Upload Resources</label>
+                        <input type="file" class="form-control" id="resource_file" name="resource_file">
+                        <div class="form-text">Upload resources for this post (images, PDFs, videos, etc.)</div>
+                        {% if content and content.resources %}
+                        <div class="mt-2">
+                            <p class="mb-1">Current resource: <a href="/static/uploads/{{ content.resources }}"
+                                    target="_blank">{{ content.resources }}</a></p>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cover_image_file" class="form-label">Cover Image</label>
+                        <input type="file" class="form-control" id="cover_image_file" name="cover_image_file"
+                            accept="image/*">
+                        <div class="form-text">Upload a cover image for this post (will be displayed in the feed)</div>
+                        {% if content and content.cover_image %}
+                        <div class="mt-2">
+                            <p class="mb-1">Current cover image:</p>
+                            <img src="/static/uploads/{{ content.cover_image }}" class="img-thumbnail"
+                                style="max-height: 200px;">
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="scheduled_for" class="form-label">Schedule For</label>
+                        <input type="datetime-local" class="form-control" id="scheduled_for" name="scheduled_for"
+                            value="{{ content.scheduled_for if content else '' }}">
+                    </div>
+
+                    {% if content %}
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <select class="form-select" id="status" name="status" required>
+                            <option value="draft" {% if content.status=='draft' %}selected{% endif %}>Draft</option>
+                            <option value="scheduled" {% if content.status=='scheduled' %}selected{% endif %}>Scheduled
+                            </option>
+                            <option value="posted" {% if content.status=='posted' %}selected{% endif %}>Posted</option>
+                        </select>
+                    </div>
+                    {% else %}
+                    <input type="hidden" name="status" value="draft">
+                    {% endif %}
+
+                    <div class="d-flex justify-content-between">
+                        <a href="{% if content %}/content/{{ content.id }}{% else %}/cms{% endif %}"
+                            class="btn btn-outline-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
