@@ -4,7 +4,7 @@ import sqlite3
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, flash, abort, send_from_directory
 from werkzeug.utils import secure_filename
-from flask_bootstrap import Bootstrap5
+from flask_bootstrap import Bootstrap
 
 # Create app directory structure
 os.makedirs("static", exist_ok=True)
@@ -18,7 +18,7 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max upload
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
 # Initialize Bootstrap
-bootstrap = Bootstrap5(app)
+bootstrap = Bootstrap(app)
 
 # Database setup
 DATABASE_NAME = "content_bank.db"
