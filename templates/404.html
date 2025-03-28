@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found - LinkedIn Content Bank{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mt-5">
+                <div class="card-body text-center">
+                    <h1 class="display-1 text-muted">404</h1>
+                    <h2 class="mb-4">Page Not Found</h2>
+                    <p class="lead">The page you're looking for doesn't exist or has been moved.</p>
+                    <div class="mt-4">
+                        <a href="{{ url_for('home') }}" class="btn btn-primary">Return Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

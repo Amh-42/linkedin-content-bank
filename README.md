@@ -8,6 +8,7 @@ A simple and practical content bank for LinkedIn posts with a mobile-first desig
 - Content scheduling and management
 - Mobile-friendly interface
 - Simple CMS for content management
+- Cover image support for posts
 
 ## Setup
 
@@ -18,6 +19,11 @@ A simple and practical content bank for LinkedIn posts with a mobile-first desig
 
 ## Technology
 
-- Backend: FastAPI
+- Backend: Flask
 - Frontend: HTML, CSS, JavaScript (via CDN)
-- Database: SQLite 
+- Database: SQLite
+- UI Framework: Bootstrap 5
+
+## Deployment
+
+For deployment instructions, please see the DEPLOYMENT.md file. 

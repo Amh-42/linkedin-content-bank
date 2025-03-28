@@ -8,7 +8,7 @@
         <h1>Content Management</h1>
     </div>
     <div class="col-md-6 text-md-end">
-        <a href="/content/new" class="btn btn-primary">Add New Content</a>
+        <a href="{{ url_for('new_content') }}" class="btn btn-primary">Add New Content</a>
     </div>
 </div>
 
@@ -33,12 +33,14 @@
                     {% endif %}
 
                     {% if content.scheduled_for %}
-                    <p class="mb-1"><strong>Scheduled for:</strong> {{ content.scheduled_for }}</p>
+                    <p class="mb-1"><strong>Scheduled for:</strong> {{ content.scheduled_for | datetime }}</p>
                     {% endif %}
 
                     <div class="mt-3 d-flex justify-content-between">
-                        <a href="/content/{{ content.id }}" class="btn btn-sm btn-outline-primary">View</a>
-                        <a href="/content/{{ content.id }}/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
+                        <a href="{{ url_for('get_content', content_id=content.id) }}"
+                            class="btn btn-sm btn-outline-primary">View</a>
+                        <a href="{{ url_for('edit_content', content_id=content.id) }}"
+                            class="btn btn-sm btn-outline-secondary">Edit</a>
                     </div>
                 </div>
             </div>
@@ -69,12 +71,13 @@
                                 {{ content.status }}
                             </span>
                         </td>
-                        <td>{{ content.scheduled_for or '-' }}</td>
-                        <td>{{ content.created_at }}</td>
+                        <td>{{ content.scheduled_for | datetime if content.scheduled_for else '-' }}</td>
+                        <td>{{ content.created_at | datetime }}</td>
                         <td>
                             <div class="btn-group">
-                                <a href="/content/{{ content.id }}" class="btn btn-sm btn-outline-primary">View</a>
-                                <a href="/content/{{ content.id }}/edit"
+                                <a href="{{ url_for('get_content', content_id=content.id) }}"
+                                    class="btn btn-sm btn-outline-primary">View</a>
+                                <a href="{{ url_for('edit_content', content_id=content.id) }}"
                                     class="btn btn-sm btn-outline-secondary">Edit</a>
                             </div>
                         </td>
